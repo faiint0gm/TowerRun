@@ -60,7 +60,6 @@ public class StepMovement : MonoBehaviour {
 	void Update()
 	{
 		MoveX (xMovementLocal);
-		MoveY (yMovementLocal);
 	}
 
 	void MoveX(bool canMove)

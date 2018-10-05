@@ -6,15 +6,13 @@ public class LevelSetter : MonoBehaviour {
 
 	[Header("Steps configuration")]
 	public GameObject [] stepPrefabs;
-	public int stepCount;
+    public int stepCount;
+    public GameObject floor;
+    public GameObject center;
+	
 	[Space(2)]
 	[Header("Step distances")]
-	public float xmin = 0.1f;
-	public float xmax = 0.1f;
-	public float ymin = 0.1f;
-	public float ymax = 0.1f;
-	public float zmin = 0.1f;
-	public float zmax = 0.1f;
+    public float ySpace = 4.0f;
 	[Space(5)]
 	[Header("Movement speed")]
 	public float xSpeedMin = 0.1f;
@@ -31,11 +29,18 @@ public class LevelSetter : MonoBehaviour {
 	public float yMinDistance = -1f;
 	public float yMaxDistance = 1f;
 
-	private float xRange, yRange, zRange;
 	private int randomPrefabIndex;
 	private Vector3 lastStepPosition;
 
-	public static LevelSetter instance = null;
+    [Space(2)]
+    [Header("Rotation around")]
+    public float angle = 0f;
+    Vector3 aroundPoint = new Vector3(0, 0, 0);
+    Vector3 axis = Vector3.down;
+    float r, R;
+    float lastStepXScale;
+
+    public static LevelSetter instance = null;
 
 	void Awake()
 	{
@@ -47,28 +52,43 @@ public class LevelSetter : MonoBehaviour {
 
 	void Start()
 	{
-		lastStepPosition = new Vector3 (0, 0, 0);
-		RandomStepSet ();
-	}
+		lastStepPosition = new Vector3 (3, 1, 0);
+        r = center.transform.localScale.x / 2;
+        R = floor.transform.localScale.x / 2;
+
+        SetTower();
+        RandomStepSet();
+    }
 
 	void RandomStepSet()
 	{
 		for (int i = 0; i < stepCount; i++) {
 			randomPrefabIndex = Random.Range (0, stepPrefabs.Length);
+            lastStepXScale = stepPrefabs[randomPrefabIndex].transform.localScale.x;
 
-			if (i == 0)
-				xRange = yRange = zRange = 0;
-			
-			GameObject stepClone;
-			stepClone = Instantiate (stepPrefabs [randomPrefabIndex], 
-				new Vector3(lastStepPosition.x + xRange,lastStepPosition.y + yRange, lastStepPosition.z +zRange),
-				Quaternion.identity) as GameObject;
+            GameObject stepClone;
+            stepClone = Instantiate(stepPrefabs[randomPrefabIndex],
+                                    new Vector3(Random.Range(r+ (lastStepXScale/2),R-(lastStepXScale/2)), 
+                                                lastStepPosition.y + ySpace,
+                                                0),
+                                    Quaternion.Euler(0,0,0)) as GameObject;
+
+            aroundPoint = new Vector3(0, stepClone.transform.position.y, 0);
+            stepClone.transform.RotateAround(aroundPoint, axis, angle);
+            angle += 30;
 			stepClone.transform.parent = transform;
 			lastStepPosition = new Vector3 (stepClone.transform.position.x, stepClone.transform.position.y, stepClone.transform.position.z);
 
-			xRange = Random.Range (xmin, xmax);
-			yRange = Random.Range (ymin, ymax) + stepClone.transform.localScale.y;
-			zRange = Random.Range (zmin, zmax) + stepClone.transform.localScale.z;
 		}
 	}
+
+    void SetTower()
+    {
+        float scaleY = stepCount * ySpace / 2;
+        float scaleX = center.transform.localScale.x;
+        float scaleZ = center.transform.localScale.z;
+
+        center.transform.localScale = new Vector3(scaleX, scaleY, scaleZ);
+        center.transform.position = new Vector3(0, scaleY, 0);
+    }
 }
