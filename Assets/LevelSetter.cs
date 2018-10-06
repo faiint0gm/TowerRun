@@ -9,7 +9,8 @@ public class LevelSetter : MonoBehaviour {
     public int stepCount;
     public GameObject floor;
     public GameObject center;
-	
+    public GameObject walls;
+
 	[Space(2)]
 	[Header("Step distances")]
     public float ySpace = 4.0f;
@@ -39,6 +40,7 @@ public class LevelSetter : MonoBehaviour {
     Vector3 axis = Vector3.down;
     float r, R;
     float lastStepXScale;
+    float scaleY;
 
     public static LevelSetter instance = null;
 
@@ -57,6 +59,7 @@ public class LevelSetter : MonoBehaviour {
         R = floor.transform.localScale.x / 2;
 
         SetTower();
+        SetWalls();
         RandomStepSet();
     }
 
@@ -84,11 +87,22 @@ public class LevelSetter : MonoBehaviour {
 
     void SetTower()
     {
-        float scaleY = stepCount * ySpace / 2;
+
         float scaleX = center.transform.localScale.x;
+        scaleY = stepCount * ySpace / 2;
         float scaleZ = center.transform.localScale.z;
 
         center.transform.localScale = new Vector3(scaleX, scaleY, scaleZ);
         center.transform.position = new Vector3(0, scaleY, 0);
+    }
+
+    void SetWalls()
+    {
+        for (int i = 0; i <= (int)scaleY * 2; i++)
+        {
+            GameObject wallClone;
+            wallClone = Instantiate(walls, new Vector3(0, i, 0), Quaternion.identity) as GameObject;
+            wallClone.transform.parent = transform;
+        }
     }
 }
