@@ -98,10 +98,10 @@ public class LevelSetter : MonoBehaviour {
 
     void SetWalls()
     {
-        for (int i = 0; i <= (int)scaleY * 2; i++)
+        for (int i = 0; i <= (int)scaleY*2; i+=6)
         {
             GameObject wallClone;
-            wallClone = Instantiate(walls, new Vector3(0, i, 0), Quaternion.identity) as GameObject;
+            wallClone = Instantiate(walls, new Vector3(0, i+3, 0), Quaternion.identity) as GameObject;
             wallClone.transform.parent = transform;
         }
     }
