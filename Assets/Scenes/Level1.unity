@@ -268,21 +268,12 @@ MonoBehaviour:
   stepPrefabs:
   - {fileID: 1521138244835186, guid: a5ec8c280a8af4be098b8c7bec970734, type: 2}
   - {fileID: 1241924897027316, guid: 5fd130bad7b3642309eb24fb491ac69f, type: 2}
-  stepCount: 10
+  - {fileID: 1430194751940654, guid: 8a7e6fcee494ef543b8adae3434b9764, type: 2}
+  stepCount: 20
   floor: {fileID: 816442805}
   center: {fileID: 847432869}
   walls: {fileID: 1402866908346412, guid: 91fcffc61dc59427ab34b3fd2a172674, type: 2}
   ySpace: 4.5
-  xSpeedMin: 0
-  xSpeedMax: 0
-  ySpeedMin: 0
-  ySpeedMax: 0
-  zSpeedMin: 0
-  zSpeedMax: 0
-  xMinDistance: -3
-  xMaxDistance: 3
-  yMinDistance: -3
-  yMaxDistance: 3
   angle: 0
 --- !u!4 &271152950
 Transform:
@@ -426,6 +417,7 @@ GameObject:
   - component: {fileID: 816442808}
   - component: {fileID: 816442807}
   - component: {fileID: 816442806}
+  - component: {fileID: 816442810}
   m_Layer: 8
   m_Name: Floor
   m_TagString: Floor
@@ -502,6 +494,17 @@ Transform:
   m_Father: {fileID: 792664651}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &816442810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 816442805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192bf747e602f264589eda6cf5c936b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &847163375
 GameObject:
   m_ObjectHideFlags: 0
@@ -676,7 +679,7 @@ GameObject:
   - component: {fileID: 1029587755}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

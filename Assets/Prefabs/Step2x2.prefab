@@ -40,9 +40,9 @@ GameObject:
   - component: {fileID: 65933495838290150}
   - component: {fileID: 23427789871432140}
   - component: {fileID: 114775698737296074}
-  - component: {fileID: 114838717785220052}
+  - component: {fileID: 114683106958893318}
   m_Layer: 8
-  m_Name: Step1x1
+  m_Name: Step2x2
   m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69,7 +69,7 @@ Transform:
   m_GameObject: {fileID: 1521138244835186}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.29999998, z: 1}
+  m_LocalScale: {x: 2, y: 0.29999998, z: 2}
   m_Children:
   - {fileID: 4360588810229462}
   m_Father: {fileID: 0}
@@ -124,11 +124,24 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1521138244835186}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114683106958893318
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1521138244835186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 412c4e3e4abc42d4c975aa806e199b44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destructionSet: 0
+  touched: 0
 --- !u!114 &114775698737296074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -140,19 +153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26ef18cecd35043fdbec8ab86c2e62ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114838717785220052
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1521138244835186}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d924a31c1199f40e8a353d6901222d88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xIncreasing: 0
-  yIncreasing: 0
 --- !u!198 &198401109454070736
 ParticleSystem:
   m_ObjectHideFlags: 1

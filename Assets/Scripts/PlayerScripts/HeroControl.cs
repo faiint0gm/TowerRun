@@ -15,12 +15,10 @@ public class HeroControl : MonoBehaviour {
     Rigidbody rb;
     Vector3 rayOrigin;
 
-    bool doubleJumped;
 	void Start () {
         rotSpeed = rotationSpeed;
         rb = gameObject.GetComponent<Rigidbody>();
-        jumpVector = new Vector3(0, jumpForce * 10, 0);
-        doubleJumpVector = new Vector3(0, jumpForce * 10, 10);
+
     }
 	
 	void Update () {
@@ -32,10 +30,6 @@ public class HeroControl : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space) && CanJump())
         {
             Jump();
-        }
-        if (Input.GetKeyDown(KeyCode.Space) && CanDoubleJump())
-        {
-            DoubleJump();
         }
     }
 
@@ -55,13 +49,9 @@ public class HeroControl : MonoBehaviour {
     void Jump()
     {
         rb.velocity = Vector3.zero;
+        float jmpfrc = jumpForce * (rb.velocity.z != 0 ? rb.velocity.z : 1);
+        jumpVector = new Vector3(0, jmpfrc * 10, 0);
         rb.AddForce(jumpVector, ForceMode.Impulse);
-    }
-    void DoubleJump()
-    {
-        rb.velocity = Vector3.zero;
-        //RotateWalled();
-        rb.AddForce(doubleJumpVector, ForceMode.Impulse);
     }
 
     bool CanJump()
@@ -70,36 +60,14 @@ public class HeroControl : MonoBehaviour {
         Debug.DrawRay(transform.position, new Vector3(0, -2, 0), Color.magenta,1);
       
         if (Physics.Raycast(ray, 2, floorMask))
-        {
-            doubleJumped = false;
             return true;
-        }
         return false;
     }
 
-    bool CanDoubleJump()
-    {
-        Ray ray = new Ray(transform.position, Vector3.forward);
-        bool walled = Physics.Raycast(ray, 1, wallMask);
-
-        if (walled && !CanJump() && !doubleJumped)
-        {
-            doubleJumped = true;
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 
 public static float RotationSpeed()
     {
         return rotSpeed;   
     }
 
-    void RotateWalled()
-    {
-        transform.rotation = new Quaternion(transform.rotation.x, -transform.rotation.y, transform.rotation.z,1);
-    }
 }

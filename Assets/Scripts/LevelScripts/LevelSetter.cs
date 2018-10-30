@@ -14,21 +14,6 @@ public class LevelSetter : MonoBehaviour {
 	[Space(2)]
 	[Header("Step distances")]
     public float ySpace = 4.0f;
-	[Space(5)]
-	[Header("Movement speed")]
-	public float xSpeedMin = 0.1f;
-	public float xSpeedMax = 1f;
-	public float ySpeedMin = 0.1f;
-	public float ySpeedMax = 1f;
-	public float zSpeedMin = 0.1f;
-	public float zSpeedMax = 1f;
-
-	[Space(2)]
-	[Header("Movement distance")]
-	public float xMinDistance = -1f;
-	public float xMaxDistance = 1f;
-	public float yMinDistance = -1f;
-	public float yMaxDistance = 1f;
 
 	private int randomPrefabIndex;
 	private Vector3 lastStepPosition;
@@ -71,14 +56,14 @@ public class LevelSetter : MonoBehaviour {
 
             GameObject stepClone;
             stepClone = Instantiate(stepPrefabs[randomPrefabIndex],
-                                    new Vector3(Random.Range(r+ (lastStepXScale/2),R-(lastStepXScale/2)), 
+                                    new Vector3(Random.Range(r+ (lastStepXScale),R-(lastStepXScale)), 
                                                 lastStepPosition.y + ySpace,
                                                 0),
                                     Quaternion.Euler(0,0,0)) as GameObject;
 
             aroundPoint = new Vector3(0, stepClone.transform.position.y, 0);
             stepClone.transform.RotateAround(aroundPoint, axis, angle);
-            angle += 30;
+            angle += 45;
 			stepClone.transform.parent = transform;
 			lastStepPosition = new Vector3 (stepClone.transform.position.x, stepClone.transform.position.y, stepClone.transform.position.z);
 
