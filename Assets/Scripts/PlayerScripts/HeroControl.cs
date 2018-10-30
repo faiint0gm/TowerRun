@@ -11,26 +11,33 @@ public class HeroControl : MonoBehaviour {
     static float rotSpeed;
     public LayerMask floorMask, wallMask;
     Vector3 jumpVector;
+    Vector3 doubleJumpVector;
     Rigidbody rb;
+    Vector3 rayOrigin;
 
     bool doubleJumped;
 	void Start () {
         rotSpeed = rotationSpeed;
         rb = gameObject.GetComponent<Rigidbody>();
         jumpVector = new Vector3(0, jumpForce * 10, 0);
-	}
+        doubleJumpVector = new Vector3(0, jumpForce * 10, 10);
+    }
 	
 	void Update () {
         CheckMovement();
-        if(Input.GetKeyDown(KeyCode.Space) && CanJump())
+	}
+
+    private void FixedUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && CanJump())
         {
             Jump();
         }
-        if(Input.GetKeyDown(KeyCode.Space) && CanDoubleJump())
+        if (Input.GetKeyDown(KeyCode.Space) && CanDoubleJump())
         {
             DoubleJump();
         }
-	}
+    }
 
     void CheckMovement()
     {
@@ -47,21 +54,22 @@ public class HeroControl : MonoBehaviour {
 
     void Jump()
     {
-        Debug.Log("Jump Da Fak Up!");
+        rb.velocity = Vector3.zero;
         rb.AddForce(jumpVector, ForceMode.Impulse);
     }
     void DoubleJump()
     {
         rb.velocity = Vector3.zero;
-        Jump();
+        //RotateWalled();
+        rb.AddForce(doubleJumpVector, ForceMode.Impulse);
     }
 
     bool CanJump()
     {
-        Ray ray = new Ray(transform.position, new Vector3(0,-2,0));
-        RaycastHit hit;
-        Debug.DrawRay(transform.position, new Vector3(0,-2,0), Color.magenta,1);
-        if (Physics.Raycast(ray, out hit, transform.localScale.y, floorMask))
+        Ray ray = new Ray(transform.position, new Vector3(0,-1,0));
+        Debug.DrawRay(transform.position, new Vector3(0, -2, 0), Color.magenta,1);
+      
+        if (Physics.Raycast(ray, 2, floorMask))
         {
             doubleJumped = false;
             return true;
@@ -72,8 +80,7 @@ public class HeroControl : MonoBehaviour {
     bool CanDoubleJump()
     {
         Ray ray = new Ray(transform.position, Vector3.forward);
-        RaycastHit hit;
-        bool walled = Physics.Raycast(ray, out hit, transform.localScale.z, wallMask);
+        bool walled = Physics.Raycast(ray, 1, wallMask);
 
         if (walled && !CanJump() && !doubleJumped)
         {
@@ -89,5 +96,10 @@ public class HeroControl : MonoBehaviour {
 public static float RotationSpeed()
     {
         return rotSpeed;   
+    }
+
+    void RotateWalled()
+    {
+        transform.rotation = new Quaternion(transform.rotation.x, -transform.rotation.y, transform.rotation.z,1);
     }
 }
