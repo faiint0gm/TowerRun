@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 83140448}
   - component: {fileID: 83140447}
   - component: {fileID: 83140446}
+  - component: {fileID: 83140450}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -191,13 +192,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 83140445}
-  m_LocalRotation: {x: 0.08715578, y: 0, z: 0, w: 0.9961947}
-  m_LocalPosition: {x: 0, y: 1.5, z: -5}
+  m_LocalRotation: {x: 0.08715578, y: -0, z: -0, w: 0.9961947}
+  m_LocalPosition: {x: 5, y: 2.5, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1029587754}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 10, y: 0, z: 0}
+--- !u!114 &83140450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 83140445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46830d96d58ca463d98531fb76cb8a50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1029587754}
+  position:
+    targetPosOffset: {x: 0, y: 0.5, z: 0}
+    distanceFromTarget: -4
+    zoomSmooth: 100
+    zoomStep: 2
+    maxZoom: -2
+    minZoom: -15
+    smoothFollow: 1
+    smooth: 0.05
+    adjustmentDistance: -8
+  orbit:
+    xRotation: -20
+    yRotation: 180
+    maxXRotation: 25
+    minXRotation: -50
+    vOrbitSmooth: 0.5
+    hOrbitSmooth: 0.5
+  debug:
+    drawDesiredCollisionLines: 0
+    drawAdjustedCollisionLines: 0
+  collision:
+    collisionLayer:
+      serializedVersion: 2
+      m_Bits: 512
+    colliding: 0
+    adjustedCameraClipPoints: []
+    desiredCameraClipPoints: []
 --- !u!1 &271152948
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,9 +426,9 @@ GameObject:
   - component: {fileID: 816442808}
   - component: {fileID: 816442807}
   - component: {fileID: 816442806}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -462,6 +502,78 @@ Transform:
   m_Father: {fileID: 792664651}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &847163375
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 847163376}
+  - component: {fileID: 847163379}
+  - component: {fileID: 847163378}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &847163376
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 847163375}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.4, z: 0.29}
+  m_LocalScale: {x: 0.9, y: 0.2, z: 0.4}
+  m_Children: []
+  m_Father: {fileID: 1029587754}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &847163378
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 847163375}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &847163379
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 847163375}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &847432869
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,7 +585,7 @@ GameObject:
   - component: {fileID: 847432872}
   - component: {fileID: 847432871}
   - component: {fileID: 847432870}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CenterCylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -633,9 +745,9 @@ Transform:
   m_LocalPosition: {x: 5, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 83140449}
+  - {fileID: 847163376}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1029587755
 MonoBehaviour:
@@ -645,15 +757,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1029587750}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 697aeb7d0cd384e6c90c8afe0b232c5c, type: 3}
+  m_Script: {fileID: 11500000, guid: fae6c90bd1e9246aba22d5704da1eb2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundLayer:
+  minMovementSpeed: 3
+  maxMovementSpeed: 7
+  rotationSpeed: 250
+  jumpForce: 6
+  floorMask:
     serializedVersion: 2
     m_Bits: 256
-  rotationSpeed: 150
-  moveSpeed: 3
-  jumpForce: {x: 0, y: 5, z: 0}
+  wallMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!54 &1029587756
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -663,7 +779,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 5
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0

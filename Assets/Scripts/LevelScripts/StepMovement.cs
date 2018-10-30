@@ -13,7 +13,7 @@ public class StepMovement : MonoBehaviour {
 	float yMaxDistanceLocal = 0.1f;
 
 	bool xMovementLocal = false;
-	bool yMovementLocal = false;
+	//bool yMovementLocal = false;
 
 	[SerializeField]
 	bool xIncreasing;
@@ -24,7 +24,6 @@ public class StepMovement : MonoBehaviour {
 	float newY;
 
 	Vector3 pos;
-	Vector3 startPos;
 	AnimationCurve xAnimCurveLocal;
 	AnimationCurve yAnimCurveLocal;
 	public void Init()
@@ -36,14 +35,13 @@ public class StepMovement : MonoBehaviour {
 		yMaxDistanceLocal = LevelSetter.instance.yMaxDistance;
 
 		xMovementLocal = (Random.Range (0, 2) == 0);
-		if (!xMovementLocal)
-			yMovementLocal = (Random.Range (0, 2) == 0);
+		//if (!xMovementLocal)
+			//yMovementLocal = (Random.Range (0, 2) == 0);
 
 		xSpeedLocal = Random.Range (LevelSetter.instance.xSpeedMin,LevelSetter.instance.xSpeedMax);
 		ySpeedLocal = Random.Range (LevelSetter.instance.ySpeedMin, LevelSetter.instance.ySpeedMax);
 
 		pos = transform.localPosition;
-		startPos = transform.localPosition;
 
 		newX = pos.x;
 		newY = pos.y;

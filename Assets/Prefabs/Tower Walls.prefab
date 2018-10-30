@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4713032578551418}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tower Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 23474821963145270}
   - component: {fileID: 114992981099708054}
   - component: {fileID: 64368618433528790}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
