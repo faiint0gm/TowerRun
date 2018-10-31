@@ -1,5 +1,5 @@
 # TowerRun
-
+Actual Unity version : 2018.2.11f1
 This project is a prototype of a 3D tower jumping game. Any questions/suggestions : p.rudnicki@developerodzera.pl
 
 LevelSetter.cs script is responsible for generation level from steps and walls prefabs.
